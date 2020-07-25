@@ -16,6 +16,7 @@ void display(struct linklist **);
 void deleteFirst(struct linklist **);
 void deleteLast(struct linklist **);
 void deletePosition(struct linklist **,int);
+void reverse(struct linklist **);
 int main()
 {
     struct linklist *head=NULL;
@@ -35,6 +36,7 @@ int main()
     printf("\n8.Delete the first node of list.");
     printf("\n9.Delete the last node");
     printf("\n10.Delete node at gieven postion");
+    printf("\n11.Reverse the List");
     printf("\n...............*****................");
     
     printf("\nENTER CHOICE:");
@@ -73,6 +75,9 @@ int main()
         case 10:
             countresult= countnode(&head);
             deletePosition(&head,countresult);
+            break;
+        case 11:
+            reverse(&head);
             break;
         default:
         printf("entered invalid choice");
@@ -178,7 +183,7 @@ void InsertAtPosition(struct linklist **head)
     newNode->link=NULL;
     struct linklist *t=*head;
 
-    if(n == -1){
+    if(n == -1){    
         newNode->link=*head;
         *head=newNode;
     }
@@ -287,4 +292,18 @@ void deletePosition(struct linklist **head,int count)
         printf("\nname = %s",r->name);
         free(r);
     }
+}
+//...............REVERSE THE LIST................
+void reverse(struct linklist **head)
+{
+    struct linklist *t1=NULL;
+    struct linklist *t2=*head;
+    while(t2!=NULL)
+    {
+        t2=t2->link;
+        (*head)->link=t1;
+        t1=*head;
+        *head=t2;
+    }
+    *head=t1;
 }
