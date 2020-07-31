@@ -1,16 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
-
-void push( int*, int*,int);
+#include<string.h>
+void push( int*, int*,int*);
 void pop(int*, int*);
 void display(int* ,int*);
+void merge_array(int *, int *, int *);
 int main()
 {
     int size=5; 
     int s[size];
     int top=-1;
-
-    //int element;
      
     int choice;
     while(1)
@@ -27,7 +26,7 @@ int main()
         switch(choice)
         {
         case 1:
-            push(s,&top,size);
+            push(s,&top,&size);
             break;
         case 2:
             pop(s,&top);
@@ -43,13 +42,26 @@ int main()
         }
     }
 }
-void push( int *s,  int *top, int size)
+void push( int *s,  int *top, int* size)
 {
     int element;
-    if(*top==size)
+    if(*top==*size)
     {
         printf("\noverflow");
-        printf("\nDo you want to increase the size of array? (Y/N)");
+        printf("\nDo you want to increase the size of array? (Y/N) : ");
+        char ans[1];
+        scanf("%s",ans);
+
+        if(ans[0]=='y'){
+            int k=(*size)*2;
+            *size = k;
+            int res[k];
+            merge_array(s, res, top);
+            s = res;
+        }
+        else {
+            printf("\nstack is full, please pop or exit");
+        }
     }
     else
     {
@@ -77,6 +89,16 @@ void display(int *s, int *top)
 
     for(;temp>=0;temp--)
     {
-        printf("%d",(s[temp]));
+        printf("\t%d",(s[temp]));
+        printf("\n");
+    }
+}
+
+void merge_array(int *s, int *res, int *top)
+{
+    int i = 0;
+    while(i == *top) {
+         res[i] = s[i]; 
+         i++;  
     }
 }
