@@ -50,7 +50,6 @@ int main()
 }
 void push(struct detail *s,  int *top, int *size)
 {
-    //int element;
     if(*top==*size)
     {
         printf("\noverflow");
@@ -61,7 +60,7 @@ void push(struct detail *s,  int *top, int *size)
         if(ans[0] == 'y' || ans[0] == 'Y'){
             int k=(*size)*2;
             *size = k;  
-            printf("\nSize updated");                //update size..
+            printf("\nSize updated"); 
             struct detail res[k];
             merge_array(s, res, top);
             s = res;
