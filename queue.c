@@ -5,7 +5,7 @@ void delq(int* ,int* ,int* , int *);
 void display(int* , int* , int*);
 int main()
 {
-    int size=3;
+    int size=4;
     int a[size];
     
     int front = -1;
@@ -53,7 +53,6 @@ void addq(int *a, int *front, int *rear , int *size)
         scanf("%d",&id);
         a[(*rear)] = id;
     }
-    //*front=(*rear);
 }
 void delq(int *front, int *rear , int *a , int *size)
 {
@@ -75,9 +74,7 @@ void display(int *front, int *rear , int *a)
     else{
      while(temp!=*rear)
      {
-         printf("\n......11");
-         printf("%d\n",a[temp]);
-         printf("\n......22");
+         printf("%d\n",(a[temp]));
          temp++;
      }
  }
