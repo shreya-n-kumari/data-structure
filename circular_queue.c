@@ -2,7 +2,7 @@
 #include<stdlib.h>
 void enQueue(int* , int* , int* , int*);
 void deQueue(int* , int* , int* , int*);
-void display(int* , int* , int* );
+void display(int* , int* , int* ,int* );
 int main()
 {
     int size = 5;
@@ -32,7 +32,7 @@ int main()
             deQueue(Queue , &front , &rear , &size);
             break;
         case 3:
-            display(Queue , &front , &rear);
+            display(Queue , &front , &rear , &size);
             break;
         case 4:
             exit(0);
@@ -58,8 +58,6 @@ void enQueue(int *q , int *front , int *rear , int *size)
 
         *rear = (*rear+1)%(*size);
         q[*rear] = element;
-        printf("front = %d ", *front);
-        printf("rear = %d ", *rear);
 
         if (*front == -1) {
             *front = *rear;
@@ -85,19 +83,26 @@ void deQueue(int *a , int *front , int *rear , int *size)
     }
 }
 
-void display(int *a , int *front , int *rear)
+void display(int *a , int *front , int *rear ,int *size)
 {
-    int temp = *front;
+    //int temp = *front;
     if (*front == -1 && *rear == -1)
     {
         printf("\nQueue is Empty!\n");
     }else
     {
-        while(temp<=*rear)
-        {
-            printf("%d\n",(a[temp]));
-            temp++;
-        }  
-    }
+            /* if rear is behind front. (front> rear)*/
+            for (int temp = *front; ; temp=(temp+1)%*size)
+            {
+                printf("%d\n",(a[temp]));
+                if (temp == *rear)
+                {
+                    /* come out from loop, since all the elements are printed */
+                    break;
+                }
+                
+            }
+
+    }    
    
 }
